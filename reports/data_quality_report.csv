@@ -1,0 +1,53 @@
+﻿stage,check,n_rows,action,detail
+clean,"missing tokens ('', '-', ' ', 'nan') -> NA",448740,set NA,
+clean,numeric parse failures (total),0,set NaN,
+clean,invalid date: unparsable,0,remove,
+clean,invalid date: before 2021-01-01,0,remove,
+clean,invalid date: after 2026-09-15,0,remove,
+clean,sigungu split failure (sido/gu/dong),0,"keep, NA parts",
+clean,search-condition gu != data gu,0,keep (data wins),
+clean,gu outside VALID_GU,0,none,
+clean,exact duplicates across files,0,remove,
+clean,identical rows within the same file,4838,"keep (likely different units), flagged as dup candidate",
+clean,transaction duplicate candidates (key match),15636,flag only,"keys=contract_date,gu,dong,jibun,building_name,area_m2,floor,rent_type,deposit_10k,monthly_rent_10k"
+clean,area_m2 <= 0 or missing,0,remove,
+clean,deposit_10k < 0,0,remove,
+clean,monthly_rent_10k < 0,0,remove,
+clean,rent_type distribution,155179,info,"{'월세': 90288, '전세': 64891}"
+clean,"rent_type not in {전세, 월세}",0,"keep, excluded from models",
+clean,anomaly_jeonse_with_rent,0,flag (excluded by model filter),
+clean,anomaly_jeonse_zero_deposit,0,flag (excluded by model filter),
+clean,anomaly_monthly_zero_rent,4,flag (excluded by model filter),
+clean,contract_type unexpected values,0,-> unknown,{}
+clean,renewal_request_used unexpected values,0,-> 0,{}
+clean,previous-contract info on non-renewal rows,0,keep,
+features,built_year missing,759,keep NaN,
+features,built_year < 1900 (suspicious),0,flag,
+features,built_year > contract_year,9,"building_age=NaN, built_year kept (선임대 가능성)",
+features,floor < 0 (basement),3998,"keep, is_basement=1",
+features,floor == 0,0,keep,
+features,floor missing,0,keep NaN,
+features,floor > p99.9,148,keep,"p99.9=28, max=42"
+features,contract_period missing,19340,keep NaN,
+features,contract_period parse failure,0,set NaN,
+features,lease_duration_months < 0,0,keep,
+features,geocode precision,155179,info,"{'jibun': 155177, 'road': 2}"
+features,rows without coordinates,0,location features NaN,
+features,rows whose 180d history overlaps a data gap,0,flag history_window_has_data_gap,
+features,dong_price_median_90d NaN (< 3 past tx),3314,keep NaN,
+features,comp_price_median_90d NaN (< 3 past tx),20685,keep NaN,
+features,property_last_price NaN (no earlier tx of same property),22798,keep NaN,
+features,dong_price_trend_3m NaN (< 3 past tx),10771,keep NaN,
+features,deposit_outlier_candidate,1133,flag only (not removed),log-price IQR x3.0 within gu/rent_type/housing_category/area_bin
+features,monthly_rent_outlier_candidate,2418,flag only (not removed),log-price IQR x3.0 within gu/rent_type/housing_category/area_bin
+features,is_price_outlier_candidate,2950,flag only (not removed),log-price IQR x3.0 within gu/rent_type/housing_category/area_bin
+features,전세 deposit_10k quantiles,64891,info,"{0.001: 2000.0, 0.01: 5500.0, 0.5: 20500.0, 0.99: 48000.0, 0.999: 80000.0}"
+features,월세 monthly_rent_10k quantiles,90288,info,"{0.001: 2.0, 0.01: 4.0, 0.5: 55.0, 0.99: 180.0, 0.999: 290.0}"
+validate,required assertions (§38),0,passed,
+validate,전세 & monthly_rent > 0,0,flagged,
+validate,월세 & monthly_rent == 0,4,flagged,
+validate,built_year > contract_year,9,flagged,
+validate,duplicate candidates,15636,flagged,
+validate,brute-force leakage re-check (400 random rows),0,must be 0,all rolling/property features match
+model_data,jeonse rows,37955,saved,"rule excluded=0, features=42"
+model_data,monthly rows,69821,saved,"rule excluded=1, features=46"

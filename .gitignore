@@ -1,0 +1,27 @@
+# 비밀 정보 / 환경
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+
+# 원본 다운로드 파일 (프로젝트 루트에 둔 원본 사본)
+/*.xlsx
+/*_2021-2026/
+
+# 데이터: 웹앱에 필요한 것만 올린다
+data/*
+!data/app/
+!data/external/
+data/external/*
+!data/external/universities.csv
+!data/external/subway_stations.csv
+!data/external/address_coords.csv
+
+# 모델: 서비스용 최종 모델만
+models/*
+!models/final/
+
+# 리포트: 요약 csv/json만 (로그·예측 parquet 제외)
+reports/**/*.txt
+!reports/model/model_summary.txt
+reports/**/*.parquet

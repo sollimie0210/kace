@@ -1,0 +1,514 @@
+{
+  "n_raw_files": 38,
+  "n_raw_tables": 40,
+  "n_failed_tables": 0,
+  "n_rows_raw": 155179,
+  "n_rows_after_concat": 155179,
+  "numeric_parse_failures": {
+    "area_m2": 0,
+    "deposit_10k": 0,
+    "monthly_rent_10k": 0,
+    "floor": 0,
+    "built_year": 0,
+    "previous_deposit_10k": 0,
+    "previous_monthly_rent_10k": 0
+  },
+  "n_invalid_dates": 0,
+  "n_exact_duplicates_removed": 0,
+  "n_duplicate_candidates": 15636,
+  "n_invalid_area": 0,
+  "n_invalid_price": 0,
+  "contract_type_missing_rate_by_year": {
+    "2021": 0.4839,
+    "2022": 0.1915,
+    "2023": 0.1445,
+    "2024": 0.0216,
+    "2025": 0.0134,
+    "2026": 0.006
+  },
+  "coverage_gaps": {},
+  "source_distribution": {
+    "노원구|연립다세대": {
+      "n": 10191.0,
+      "jeonse_share": 0.4039,
+      "deposit_max": 120000.0,
+      "deposit_p99": 32000.0,
+      "category_deposit_p99": 41000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "노원구|오피스텔": {
+      "n": 2417.0,
+      "jeonse_share": 0.1837,
+      "deposit_max": 30000.0,
+      "deposit_p99": 24000.0,
+      "category_deposit_p99": 42000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "동대문구|연립다세대": {
+      "n": 17833.0,
+      "jeonse_share": 0.4945,
+      "deposit_max": 250000.0,
+      "deposit_p99": 40000.0,
+      "category_deposit_p99": 41000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "동대문구|오피스텔": {
+      "n": 25534.0,
+      "jeonse_share": 0.2992,
+      "deposit_max": 75000.0,
+      "deposit_p99": 47000.0,
+      "category_deposit_p99": 42000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "동작구|연립다세대": {
+      "n": 32696.0,
+      "jeonse_share": 0.4855,
+      "deposit_max": 120000.0,
+      "deposit_p99": 43000.0,
+      "category_deposit_p99": 41000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "동작구|오피스텔": {
+      "n": 4438.0,
+      "jeonse_share": 0.2934,
+      "deposit_max": 52000.0,
+      "deposit_p99": 40000.0,
+      "category_deposit_p99": 42000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "서대문구|연립다세대": {
+      "n": 22232.0,
+      "jeonse_share": 0.4282,
+      "deposit_max": 220000.0,
+      "deposit_p99": 40000.0,
+      "category_deposit_p99": 41000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "서대문구|오피스텔": {
+      "n": 9954.0,
+      "jeonse_share": 0.2164,
+      "deposit_max": 67000.0,
+      "deposit_p99": 37640.9999999998,
+      "category_deposit_p99": 42000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "성북구|연립다세대": {
+      "n": 26454.0,
+      "jeonse_share": 0.5324,
+      "deposit_max": 300000.0,
+      "deposit_p99": 40000.0,
+      "category_deposit_p99": 41000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    },
+    "성북구|오피스텔": {
+      "n": 3430.0,
+      "jeonse_share": 0.2738,
+      "deposit_max": 367500.0,
+      "deposit_p99": 41000.0,
+      "category_deposit_p99": 42000.0,
+      "suspect_low_jeonse": false,
+      "suspect_truncated_deposit": false
+    }
+  },
+  "bruteforce_leakage_mismatches": 0,
+  "rolling_trace_example": {
+    "tx_id": 88684,
+    "group": "성북구 | 하월곡동 | 전세 | 연립다세대",
+    "transaction_date": "2024-05-27",
+    "transaction_price_10k(target, not used)": 30000.0,
+    "window": "[2024-02-27, 2024-05-27)",
+    "earliest_past_tx_in_window": "2024-02-29",
+    "latest_past_tx_in_window": "2024-05-25",
+    "n_past_tx_in_window (recomputed)": 22,
+    "dong_tx_count_90d (feature)": 22,
+    "median_recomputed": 20000.0,
+    "dong_price_median_90d (feature)": 20000.0,
+    "same_day_tx_excluded": 2,
+    "future_tx_in_group_excluded": 138,
+    "median_if_same_day_were_included": 20500.0
+  },
+  "model_filters": {
+    "new_only": true,
+    "include_unknown_contract_type": false,
+    "start_date": null,
+    "exclude_gu": [],
+    "housing_categories": [
+      "연립다세대",
+      "오피스텔"
+    ]
+  },
+  "model_jeonse": {
+    "rows": 37955,
+    "n_features": 42,
+    "features": [
+      "contract_year",
+      "contract_month",
+      "contract_quarter",
+      "month_sin",
+      "month_cos",
+      "gu",
+      "dong",
+      "property_id",
+      "housing_category",
+      "housing_type",
+      "area_m2",
+      "area_pyeong",
+      "area_bin",
+      "floor",
+      "is_basement",
+      "is_ground_floor",
+      "built_year",
+      "building_age",
+      "building_name_is_address",
+      "dong_tx_count_30d",
+      "dong_tx_count_90d",
+      "dong_tx_count_180d",
+      "gu_tx_count_90d",
+      "dong_price_median_30d",
+      "dong_price_median_90d",
+      "dong_price_median_180d",
+      "dong_price_mean_90d",
+      "dong_price_std_90d",
+      "comp_price_median_30d",
+      "comp_price_median_90d",
+      "comp_price_median_180d",
+      "comp_tx_count_90d",
+      "property_last_price",
+      "property_days_since_last_transaction",
+      "property_tx_count_365d",
+      "property_price_median_365d",
+      "dong_price_trend_3m",
+      "comp_price_trend_3m",
+      "has_property_history",
+      "has_comp_90d_history",
+      "has_dong_90d_history",
+      "history_window_has_data_gap"
+    ],
+    "target": "target_deposit_10k",
+    "date_min": "2021-01-02",
+    "date_max": "2026-09-15",
+    "split_counts": {
+      "train": 27292,
+      "validation": 6512,
+      "test": 4151
+    }
+  },
+  "model_monthly": {
+    "rows": 69821,
+    "n_features": 46,
+    "features": [
+      "contract_year",
+      "contract_month",
+      "contract_quarter",
+      "month_sin",
+      "month_cos",
+      "gu",
+      "dong",
+      "property_id",
+      "housing_category",
+      "housing_type",
+      "area_m2",
+      "area_pyeong",
+      "area_bin",
+      "floor",
+      "is_basement",
+      "is_ground_floor",
+      "built_year",
+      "building_age",
+      "building_name_is_address",
+      "dong_tx_count_30d",
+      "dong_tx_count_90d",
+      "dong_tx_count_180d",
+      "gu_tx_count_90d",
+      "dong_price_median_30d",
+      "dong_price_median_90d",
+      "dong_price_median_180d",
+      "dong_price_mean_90d",
+      "dong_price_std_90d",
+      "comp_price_median_30d",
+      "comp_price_median_90d",
+      "comp_price_median_180d",
+      "comp_tx_count_90d",
+      "property_last_price",
+      "property_days_since_last_transaction",
+      "property_tx_count_365d",
+      "property_price_median_365d",
+      "dong_price_trend_3m",
+      "comp_price_trend_3m",
+      "has_property_history",
+      "has_comp_90d_history",
+      "has_dong_90d_history",
+      "history_window_has_data_gap",
+      "deposit_10k",
+      "deposit_per_m2",
+      "dong_deposit_median_90d",
+      "comp_deposit_median_90d"
+    ],
+    "target": "target_monthly_rent_10k",
+    "date_min": "2021-01-02",
+    "date_max": "2026-09-15",
+    "split_counts": {
+      "train": 41214,
+      "validation": 16432,
+      "test": 12175
+    }
+  },
+  "n_rows_clean": 155179,
+  "n_jeonse": 64891,
+  "n_monthly": 90288,
+  "n_new_contract": 107777,
+  "n_renewal_contract": 26097,
+  "n_unknown_contract_type": 21305,
+  "date_min": "2021-01-01",
+  "date_max": "2026-09-15",
+  "gu_counts": {
+    "동대문구": 43367,
+    "동작구": 37134,
+    "서대문구": 32186,
+    "성북구": 29884,
+    "노원구": 12608
+  },
+  "gu_housing_counts": {
+    "노원구|연립다세대": 10191,
+    "노원구|오피스텔": 2417,
+    "동대문구|연립다세대": 17833,
+    "동대문구|오피스텔": 25534,
+    "동작구|연립다세대": 32696,
+    "동작구|오피스텔": 4438,
+    "서대문구|연립다세대": 22232,
+    "서대문구|오피스텔": 9954,
+    "성북구|연립다세대": 26454,
+    "성북구|오피스텔": 3430
+  },
+  "rent_type_counts": {
+    "월세": 90288,
+    "전세": 64891
+  },
+  "housing_category_counts": {
+    "연립다세대": 109406,
+    "오피스텔": 45773
+  },
+  "missing_rate": {
+    "renewal_request_used": 94.48,
+    "previous_deposit_10k": 83.18,
+    "previous_monthly_rent_10k": 83.18,
+    "contract_type": 13.73,
+    "contract_period": 12.46,
+    "road_name": 1.64,
+    "built_year": 0.49,
+    "building_name": 0.01,
+    "bubun": 0.0,
+    "row_no": 0.0,
+    "bonbun": 0.0,
+    "jibun": 0.0,
+    "sigungu": 0.0,
+    "floor": 0.0,
+    "monthly_rent_10k": 0.0,
+    "deposit_10k": 0.0,
+    "contract_day": 0.0,
+    "contract_ym": 0.0,
+    "area_m2": 0.0,
+    "rent_type": 0.0,
+    "housing_type": 0.0
+  },
+  "config": {
+    "PROJECT_ROOT": ".",
+    "RAW_DATA_DIR": "data/raw",
+    "INTERIM_DATA_DIR": "data/interim",
+    "PROCESSED_DATA_DIR": "data/processed",
+    "REPORT_DIR": "reports",
+    "VALID_GU": [
+      "동작구",
+      "노원구",
+      "서대문구",
+      "동대문구",
+      "성북구"
+    ],
+    "DROP_INVALID_GU": false,
+    "START_DATE": "2021-01-01",
+    "END_DATE": "2026-09-15",
+    "PARTIAL_YEAR": 2026,
+    "HOUSING_CATEGORIES": [
+      "연립다세대",
+      "오피스텔"
+    ],
+    "MODEL_HOUSING_CATEGORIES": [
+      "연립다세대",
+      "오피스텔"
+    ],
+    "ENCODINGS": [
+      "cp949",
+      "euc-kr",
+      "utf-8-sig",
+      "utf-8"
+    ],
+    "RAW_FILE_PATTERNS": [
+      "*.csv",
+      "*.xlsx"
+    ],
+    "RAW_COLUMNS": [
+      "NO",
+      "시군구",
+      "번지",
+      "본번",
+      "부번",
+      "건물명",
+      "전월세구분",
+      "전용면적(㎡)",
+      "계약년월",
+      "계약일",
+      "보증금(만원)",
+      "월세금(만원)",
+      "층",
+      "건축년도",
+      "도로명",
+      "계약기간",
+      "계약구분",
+      "갱신요구권 사용",
+      "종전계약 보증금(만원)",
+      "종전계약 월세(만원)",
+      "주택유형"
+    ],
+    "RAW_COLUMN_ALIASES": {
+      "단지명": "건물명"
+    },
+    "OFFICETEL_RAW_COLUMNS": [
+      "NO",
+      "시군구",
+      "번지",
+      "본번",
+      "부번",
+      "건물명",
+      "전월세구분",
+      "전용면적(㎡)",
+      "계약년월",
+      "계약일",
+      "보증금(만원)",
+      "월세금(만원)",
+      "층",
+      "건축년도",
+      "도로명",
+      "계약기간",
+      "계약구분",
+      "갱신요구권 사용",
+      "종전계약 보증금(만원)",
+      "종전계약 월세(만원)"
+    ],
+    "STRING_COLUMNS": [
+      "jibun",
+      "bonbun",
+      "bubun",
+      "building_name",
+      "road_name",
+      "sigungu"
+    ],
+    "NUMERIC_COLUMNS": [
+      "area_m2",
+      "deposit_10k",
+      "monthly_rent_10k",
+      "floor",
+      "built_year",
+      "previous_deposit_10k",
+      "previous_monthly_rent_10k"
+    ],
+    "MISSING_TOKENS": "{'', 'null', 'none', 'NaN', 'None', 'nan', '-'}",
+    "PYEONG_M2": 3.305785,
+    "AREA_BINS": [
+      0,
+      15,
+      20,
+      25,
+      30,
+      40,
+      60,
+      85,
+      Infinity
+    ],
+    "AREA_BIN_LABELS": [
+      "0-15",
+      "15-20",
+      "20-25",
+      "25-30",
+      "30-40",
+      "40-60",
+      "60-85",
+      "85+"
+    ],
+    "ROLLING_WINDOWS": [
+      30,
+      90,
+      180
+    ],
+    "PROPERTY_HISTORY_DAYS": 365,
+    "TREND_WINDOW_DAYS": 90,
+    "MIN_ROLLING_COUNT": 3,
+    "PRICE_COLUMN_BY_RENT_TYPE": {
+      "전세": "deposit_10k",
+      "월세": "monthly_rent_10k"
+    },
+    "DONG_GROUP": [
+      "gu",
+      "dong",
+      "rent_type",
+      "housing_category"
+    ],
+    "GU_GROUP": [
+      "gu",
+      "rent_type",
+      "housing_category"
+    ],
+    "COMP_GROUP": [
+      "gu",
+      "dong",
+      "rent_type",
+      "housing_category",
+      "area_bin"
+    ],
+    "COVERAGE_GROUP": [
+      "gu",
+      "housing_category"
+    ],
+    "PROPERTY_GROUP": [
+      "property_id",
+      "rent_type"
+    ],
+    "OUTLIER_GROUP": [
+      "gu",
+      "rent_type",
+      "housing_category",
+      "area_bin"
+    ],
+    "OUTLIER_IQR_K": 3.0,
+    "OUTLIER_MIN_GROUP_SIZE": 30,
+    "NEW_CONTRACT_ONLY": true,
+    "INCLUDE_UNKNOWN_CONTRACT_TYPE": false,
+    "MODEL_DATA_START_DATE": null,
+    "MODEL_EXCLUDE_GU": [],
+    "MIN_JEONSE_SHARE": 0.05,
+    "MAX_DEPOSIT_RATIO": 0.25,
+    "SPLIT_BOUNDARIES": {
+      "train": [
+        "2021-01-01",
+        "2024-12-31"
+      ],
+      "validation": [
+        "2025-01-01",
+        "2025-12-31"
+      ],
+      "test": [
+        "2026-01-01",
+        "2026-09-15"
+      ]
+    }
+  },
+  "elapsed_sec": 41.7
+}

@@ -1,0 +1,5 @@
+# 전처리·학습·테스트용 (로컬)
+-r requirements.txt
+openpyxl
+scikit-learn
+pytest
